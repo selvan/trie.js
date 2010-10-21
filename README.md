@@ -1,8 +1,7 @@
 # trie.js
-
-    [Trie](http://en.wikipedia.org/wiki/Trie) implementation in javascript.
-    Developed for fast auto-complete features for web pages. Intended to use with node.js.
-    trie.js implementation is based on ternary search tree.
+  [Trie](http://en.wikipedia.org/wiki/Trie) implementation in javascript.
+  Developed for fast auto-complete features for web pages. Intended to use with node.js.
+  trie.js implementation is based on ternary search tree.
 
 ## Installation
  * Install Node.js
@@ -14,6 +13,7 @@
   $ node server.js
 
   RestClient.post 'http://localhost:3000/set', :key => 'hello', :value => "Hello world.." // Add new key to trie
+
   RestClient.get 'http://localhost:3000/get?q=hel' // Search key starts with hel
 
 ## Credit
