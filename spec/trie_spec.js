@@ -22,40 +22,48 @@ describe("empty trie", function() {
 
 describe("non-empty trie", function() {
     var _trie;
+    var sample_value = {"id":1, "txt":"World"};
     beforeEach(function() {
         _trie = new trie.Trie();
-        _trie.push("Hello", "World");
-        _trie.push("Hilly", "World");
-        _trie.push("Hello, brother", "World");
-        _trie.push("Hello, bob", "World");
+        _trie.push("Hello", sample_value);
+        _trie.push("Hilly", sample_value);
+        _trie.push("Hello, brother", sample_value);
+        _trie.push("Hello, bob", sample_value);
     });
 
     it("should get valid values", function() {
-        expect(_trie.get("Hello")).toEqual("World");
-        expect(_trie.get("Hello, brother")).toEqual("World");
+        expect(_trie.get("Hello")).toEqual([sample_value]);
+        expect(_trie.get("Hello, brother")).toEqual([sample_value]);
+    });
+
+    it("should not overwrite values", function() {
+        var value_2 = {"id":2, "txt":"John"};
+        _trie.push("Hello", value_2);
+        expect(_trie.get("Hello")).toEqual([sample_value, value_2]);
     });
 
     it("should overwrite values", function() {
-        _trie.push("Hello", "John");
-        expect(_trie.get("Hello")).toEqual("John");
-    });
+        var value_2 = {"id":1, "txt":"John"};
+        _trie.push("Hello", value_2);
+        expect(_trie.get("Hello")).toEqual([value_2]);
+    });    
 
     it("should match wildcards", function () {
 
         /* Fetch all */
         expect(_trie.wildcard("H*ll.", -1)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hilly', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hilly', values : [sample_value] }
         ]);
 
         /* Fetch 2 */
         expect(_trie.wildcard("H*ll.", 2)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hilly', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hilly', values : [sample_value] }
         ]);
 
         expect(_trie.wildcard("H*ll.", 1)).toEqual([
-            { key : 'Hello', value : 'World' }
+            { key : 'Hello', values : [sample_value] }
         ]);
 
         expect(_trie.wildcard("H*ll.", 0)).toEqual([]);
@@ -68,43 +76,43 @@ describe("non-empty trie", function() {
 
         /* Fetch all */
         expect(_trie.starts_with("H", -1)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hello, bob', value : 'World' },
-            { key : 'Hello, brother', value : 'World' },
-            { key : 'Hilly', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hello, bob', values : [sample_value] },
+            { key : 'Hello, brother', values : [sample_value] },
+            { key : 'Hilly', values : [sample_value] }
         ]);
 
         /* Fetch 4 */
         expect(_trie.starts_with("H", 4)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hello, bob', value : 'World' },
-            { key : 'Hello, brother', value : 'World' },
-            { key : 'Hilly', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hello, bob', values : [sample_value] },
+            { key : 'Hello, brother', values : [sample_value] },
+            { key : 'Hilly', values : [sample_value] }
         ]);
 
         expect(_trie.starts_with("H", 1)).toEqual([
-            { key : 'Hello', value : 'World' }
+            { key : 'Hello', values : [sample_value] }
         ]);
 
         expect(_trie.starts_with("H", 0)).toEqual([]);
 
         expect(_trie.starts_with("He", 2)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hello, bob', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hello, bob', values : [sample_value] }
         ]);
 
         expect(_trie.starts_with("He", 3)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hello, bob', value : 'World' },
-            { key : 'Hello, brother', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hello, bob', values : [sample_value] },
+            { key : 'Hello, brother', values : [sample_value] }
         ]);
 
         expect(_trie.starts_with("Hi", 1)).toEqual([
-            { key : 'Hilly', value : 'World' }
+            { key : 'Hilly', values : [sample_value] }
         ]);
 
         expect(_trie.starts_with("Hi", 100)).toEqual([
-            { key : 'Hilly', value : 'World' }
+            { key : 'Hilly', values : [sample_value] }
         ]);
     });
 
@@ -112,18 +120,18 @@ describe("non-empty trie", function() {
 
         /* Fetch all */
         expect(_trie.all(-1)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hello, bob', value : 'World' },
-            { key : 'Hello, brother', value : 'World' },
-            { key : 'Hilly', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hello, bob', values : [sample_value] },
+            { key : 'Hello, brother', values : [sample_value] },
+            { key : 'Hilly', values : [sample_value] }
         ]);
 
         expect(_trie.all(2)).toEqual([
-            { key : 'Hello', value : 'World' },
-            { key : 'Hello, bob', value : 'World' }
+            { key : 'Hello', values : [sample_value] },
+            { key : 'Hello, bob', values : [sample_value] }
         ]);
 
-        expect(_trie.all(0)).toEqual([]);        
+        expect(_trie.all(0)).toEqual([]);
     });
 });
 
