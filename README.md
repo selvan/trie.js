@@ -1,20 +1,27 @@
 # trie.js
   [Trie](http://en.wikipedia.org/wiki/Trie) implementation in javascript.
-  Developed for fast auto-complete features for web pages. Intended to use with node.js.
-  trie.js implementation is based on ternary search tree.
+  Developed to support fast auto-complete features. This implementation uses ternary search tree algorithm.
+  trie.js can be used as standalone library or could be used with node.js.
+  trie_spec.js spec lists most of the common usage pattern.
 
-## Installation
- * Install Node.js
- * Install express.js for Node.js
+## Installation with node.js
+ * Install jode.js
+ * Install express.js
  * clone trie.js
 
 ## Running
   $ cd trie.js/lib
   $ node server.js
 
-  RestClient.post 'http://localhost:3000/set', :key => 'hello', :value => "Hello world.." // Add new key to trie
+## Example
+  sudo gem install rest-client
 
-  RestClient.get 'http://localhost:3000/get?q=hel' // Search key starts with hel
+  require 'rubygems'
+  require 'rest_client'
+  
+  RestClient.post 'http://localhost:3300/set', {:keys => ["bonjour", "ahoj", "hej", "hallo"], :value => {:id=>1, :txt => "Welcome ", :desc => "Greetings in english"}}
+  RestClient.get 'http://localhost:3300/get?q=h'
+  RestClient.get 'http://localhost:3300/stat'
 
 ## Credit
    Kanwei's [ruby](http://github.com/kanwei/algorithms/blob/master/lib/containers/trie.rb) code for Trie implementation.

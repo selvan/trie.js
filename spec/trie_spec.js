@@ -90,6 +90,10 @@ describe("non-empty trie", function() {
             { key : 'Hilly', values : [sample_value] }
         ]);
 
+        expect(_trie.starts_with("Hello, bob", -1)).toEqual([
+            { key : 'Hello, bob', values : [sample_value] },
+        ]);
+
         expect(_trie.starts_with("H", 1)).toEqual([
             { key : 'Hello', values : [sample_value] }
         ]);
@@ -133,5 +137,10 @@ describe("non-empty trie", function() {
 
         expect(_trie.all(0)).toEqual([]);
     });
+
+    it("should count total keys", function () {
+        expect(_trie.count()).toEqual(4);
+    });
+
 });
 
