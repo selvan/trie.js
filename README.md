@@ -1,8 +1,11 @@
 # trie.js
   [Trie](http://en.wikipedia.org/wiki/Trie) implementation in javascript.
+
   Developed to support fast auto-complete features. This implementation uses ternary search tree algorithm.
+
   trie.js can be used as standalone library or could be used with node.js.
-  trie_spec.js spec lists most of the common usage pattern.
+
+  Spec trie_spec.js lists most of the common usage patterns.
 
 ## Installation with node.js
  * Install jode.js
@@ -11,16 +14,20 @@
 
 ## Running
   $ cd trie.js/lib
+
   $ node server.js
 
 ## Example
   sudo gem install rest-client
 
   require 'rubygems'
+
   require 'rest_client'
   
   RestClient.post 'http://localhost:3300/set', {:keys => ["bonjour", "ahoj", "hej", "hallo"], :value => {:id=>1, :txt => "Welcome ", :desc => "Greetings in english"}}
+
   RestClient.get 'http://localhost:3300/get?q=h'
+
   RestClient.get 'http://localhost:3300/stat'
 
 ## Credit
