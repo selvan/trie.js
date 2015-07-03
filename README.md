@@ -1,10 +1,8 @@
 # trie.js
     
-  Prefix tree data structure to support fast auto-completion.
+  [Ternary Search Tree - Trie](http://en.wikipedia.org/wiki/Trie) based prefix tree implementation to support fast auto-completion.
 
-  trie.js implementation uses [Ternary Search Tree - Trie](http://en.wikipedia.org/wiki/Trie) data structure.
-
-  trie.js can be used as standalone library or could be used with node.js.
+  trie.js shall be used as standalone library or shall be used with node.js.
 
 ## Common usage
 
