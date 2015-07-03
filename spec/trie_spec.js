@@ -1,4 +1,3 @@
-require.paths.push("../lib");
 var trie = require('trie');
 
 describe("empty trie", function() {

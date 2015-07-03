@@ -1,34 +1,34 @@
 # trie.js
-  [Trie](http://en.wikipedia.org/wiki/Trie) implementation in javascript.
+    
+  Prefix tree data structure to support fast auto-completion.
 
-  Developed to support fast auto-complete features. This implementation uses ternary search tree algorithm.
+  trie.js implementation uses [Ternary Search Tree - Trie](http://en.wikipedia.org/wiki/Trie) data structure.
 
   trie.js can be used as standalone library or could be used with node.js.
 
-  Spec trie_spec.js lists most of the common usage patterns.
+## Common usage
 
-## Installation with node.js
- * Install jode.js
- * Install express.js
- * clone trie.js
+    var _trie = new Trie();
+    
+    _trie.push("Hello", {"id":1, "txt":"Hello World"});
+    _trie.push("Hilly", {"id":2, "txt":"Hello Hilly"});
+    _trie.push("Hello, brother", {"id":3, "txt":"Whats up?"});
+    _trie.push("Hello, bob", {"id":4, "txt":"Hey dude"});
 
-## Running
-  $ cd trie.js/lib
+ 
+    Query 1:
+    _trie.wildcard("H*ll.", -1) /* -1 for retrieving all matches, positive integer for limit number of matches */
+                                /* Notice support for * and . wildcards */
+    Return for Query 1:
+    { key : 'Hello', values : {"id":1, "txt":"Hello World"} },
+    { key : 'Hilly', values : {"id":2, "txt":"Hello Hilly"} }
+        
 
-  $ node server.js
+See [spec/trie_spec.js](https://github.com/selvan/trie.js/blob/master/spec/trie_spec.js) for more usage patterns.               
 
-## Example
-  sudo gem install rest-client
-
-  require 'rubygems'
-
-  require 'rest_client'
-  
-  RestClient.post 'http://localhost:3300/set', {:keys => ["bonjour", "ahoj", "hej", "hallo"], :value => {:id=>1, :txt => "Welcome ", :desc => "Greetings in english"}}
-
-  RestClient.get 'http://localhost:3300/get?q=h'
-
-  RestClient.get 'http://localhost:3300/stat'
+## Running specs
+    npm install
+    npm run test
 
 ## Credit
    Kanwei's [ruby](http://github.com/kanwei/algorithms/blob/master/lib/containers/trie.rb) code for Trie implementation.

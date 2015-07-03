@@ -1,1 +1,2 @@
-env NODE_PATH=jasmine-node/lib:spec node jasmine-node/specs.js
+export PATH=$(npm bin):$PATH
+env NODE_PATH=./lib jasmine-node spec

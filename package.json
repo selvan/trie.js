@@ -1,0 +1,22 @@
+{
+  "name": "trie.js",
+  "version": "1.0.0",
+  "description": "[Trie](http://en.wikipedia.org/wiki/Trie) implementation in javascript.",
+  "main": "lib/trie.js",
+  "scripts": {
+    "test": "./spec_run.sh"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.14.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/selvan/trie.js.git"
+  },
+  "author": "selvan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/selvan/trie.js/issues"
+  },
+  "homepage": "https://github.com/selvan/trie.js"
+}
